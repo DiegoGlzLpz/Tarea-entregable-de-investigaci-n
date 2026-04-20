@@ -23,7 +23,7 @@ jobs:
           python-version: ${{matrix.python-version}}
 
       - name: Instalar PyTest
-        run: python -m pip install pytest .
+        run: python -m pip install pytest
 
       - name: Correr tests
         run: pytest test.py
