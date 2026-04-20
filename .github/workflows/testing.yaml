@@ -1,0 +1,29 @@
+name: Testing
+
+on:
+  push:
+
+jobs:
+  test-new-code:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest] #Utilizo ubuntu por preferencia
+        python-version: ["3.13"] #Yo utilicé esta en mi ordenador
+    name: Test
+    runs-on: ${{matrix.os}}
+
+    steps:
+      - name: Checkout codigo actual
+        uses: actions/checkout@v4
+
+      - name: Usar python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{matrix.python-version}}
+
+      - name: Instalar PyTest
+        run: python -m pip install pytest .
+
+      - name: Correr tests
+        run: pytest test.py
